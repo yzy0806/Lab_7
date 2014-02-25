@@ -26,15 +26,6 @@ class ChildTest < ActiveSupport::TestCase
       assert_equal "Rachel Heimann", @rachel.name
     end
 
-    should "have a method to find the points a child has earned" do
-      create_tasks
-      create_chores
-      assert_equal 4, @alex.points_earned
-      assert_equal 1, @mark.points_earned
-      assert_equal 0, @rachel.points_earned
-      destroy_tasks
-      destroy_chores
-    end
     
     should "have a scope to alphabetize children" do
       assert_equal ["Alex", "Mark", "Rachel"], Child.alphabetical.map(&:first_name)
@@ -43,6 +34,14 @@ class ChildTest < ActiveSupport::TestCase
     should "have a scope to select only active children" do
       assert_equal ["Alex", "Mark"], Child.active.alphabetical.map(&:first_name)
     end
-
+   should "have a method to find the points a child has earned" do
+      create_tasks
+      create_chores
+      assert_equal 4, @alex.points_earned
+      assert_equal 1, @mark.points_earned
+      assert_equal 0, @rachel.points_earned
+      destroy_tasks
+      destroy_chores
+   end 
   end
 end
